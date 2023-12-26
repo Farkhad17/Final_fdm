@@ -62,7 +62,7 @@ double shoot(double ksi, std::vector<double> &x_n, std::vector<double> &y_n){
 	std::vector <double> y(n, default_value);
 	std::vector <double> z(n, default_value);
 	
-	y[0] = ksi - 0.6;
+	y[0] = 2;
 	z[0] = ksi;
 		
 	for(i = 0; i < n; i++){
@@ -83,7 +83,7 @@ double shoot(double ksi, std::vector<double> &x_n, std::vector<double> &y_n){
 		y_n[i] = y[i];
 	}
 	
-	return y[n-1] - 1.0;
+	return y[n-1] - 2.0;
 }
 
 double f(double x){
