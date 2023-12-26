@@ -43,7 +43,8 @@ int main(int argc, char* argv[]){
 	
 	shoot(min_ksi, x, y);
 	
-	std::cout << "min_ksi = " << min_ksi << std::endl << std::endl;
+	std::cout << "ksi = " << min_ksi << " pogreshnost = " << fabs(min_shoot) << std::endl << std::endl;
+	
 	for(i = 0; i < n; i++){
 		std::cout << "x[" << i << "] = " << x[i] << " y[" << i << "] = " << y[i] <<std::endl;
 	}
