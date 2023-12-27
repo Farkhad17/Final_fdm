@@ -2,33 +2,31 @@
 #include <vector>
 #include <math.h>
 
-std::vector <double> progonka(int n, double h, double alpha);
+std::vector <double> progonka(int n, double h);
 std::vector <std::vector <double>> inv_matr(int n, std::vector <std::vector<double>> matr);
 
 int main(){
 	int n = 11, i;
-	double alpha = 1, default_value = 0, h = 1.0/(n - 1);	
+	double default_value = 0, h = 1.0/(n - 1);	
 	std::vector <double> u(n, default_value);
 	std::vector <double> u_n(n, default_value);
 	std::vector <double> u_nk(n, default_value);
 	
-	u_nk = progonka(n, h, alpha);
+	u_nk = progonka(n, h);
 	
 	for(i = 0; i < n; i++)std::cout << "u[" << i << "] = " << u_nk[i] << std::endl;
 	std::cout << std::endl; 
 	
-	
 	return 0;
 }
 
-std::vector <double> progonka(int n, double h, double alpha){
+std::vector <double> progonka(int n, double h){
 	int i, j, k1 = 0;
 	double default_value = 0, sum = 0, eps = 1e-6, sum1;	
 	std::vector <std::vector<double>> A(n, std::vector<double>(n, default_value));	
 	std::vector <std::vector<double>> inv_A(n, std::vector<double>(n, default_value));	
 	std::vector <double> u_n(n, default_value);
 	std::vector <double> u_nk(n, default_value);
-	
 	
 	for(i = 0; i < n; i++){
 		for(j = 0; j < n; j++){
@@ -52,23 +50,11 @@ std::vector <double> progonka(int n, double h, double alpha){
 	}	
 	u_n[0] = u_n[n-1] = 2;
 	
-	/*
-	for(i = 0; i < n; i++){
-		std::cout << u_n[i] << " ";
-	}
-	std::cout << std::endl;
-	*/
-	
 	for(i = 0; i < n; i++){
 		for(j = 0; j < n; j++){
 			u_nk[i] += inv_A[i][j]*u_n[j];
 		}	
 	}
-	
-	/*
-	for(i = 0; i < n; i++)std::cout << u_nk[i] << " ";
-	std::cout << std::endl;
-	*/
 	
 	while(k1 < 100){
 		for(i = 0; i < n; i++){
@@ -87,7 +73,7 @@ std::vector <double> progonka(int n, double h, double alpha){
 			sum += h*pow((u_nk[i+1] - u_nk[i]),2);
 			sum1 = sum;
 		}
-		//std::cout << "sum = " << sum << std::endl;
+		
 		if(sum < eps)break;
 		else {
 			sum = 0;
@@ -96,7 +82,7 @@ std::vector <double> progonka(int n, double h, double alpha){
 	}
 	k1 = 0; 
 	
-	std::cout << "sum = " << sum1 << std::endl << std::endl;
+	std::cout << "dist = " << sum1 << std::endl << std::endl;
 	
 	return u_nk;
 }
@@ -162,18 +148,6 @@ std::vector <std::vector <double>> inv_matr(int n, std::vector <std::vector<doub
 			ematr[i][j] /= del;
 		}
 	}
-	
-	/*
-	for(int k = 0; k < n; k++){
-		for(int l = 0; l < n; l++)std::cout << matr[k][l] << " ";
-		std::cout << "\t|";
-		for(int l = 0; l < n; l++)std::cout << ematr[k][l] << " ";	
-		std::cout << std::endl;
-	}
-	std::cout << std::endl;
-	*/
-	
+
 	return ematr;
 }
-
-
