@@ -3,6 +3,7 @@
 #include <math.h>
 
 #include <inv_matr.cpp>
+#include <progonka.cpp>
 
 
 std::vector <double> progonka(int n, double h);
