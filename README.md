@@ -50,8 +50,105 @@ $$
 \end{equation*}
 $$
 
-Перепишем в матричном виде:
+Перепишем левую часть уравнения в матричном виде:
 
+$$
+\begin{pmatrix}
+ -\frac{2}{h^2} & \frac{1}{h^2} + \frac{1}{2h}sin(x_0) & 0 & 0 & 0 & \ldots & 0 & 0 & 0 & 0 \\
+\frac{1}{h^2} - \frac{1}{2h}sin(x_1) & -\frac{2}{h^2} & \frac{1}{h^2} + \frac{1}{2h}sin(x_1) & 0 &  0 & \ldots & 0 & 0 & 0 & 0 \\
+0 & \frac{1}{h^2} - \frac{1}{2h}sin(x_2) & -\frac{2}{h^2} & \frac{1}{h^2} + \frac{1}{2h}sin(x_2) & 0 & \ldots  & 0 & 0 & 0 & 0 \\
+\vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots\\
+\vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots\\
+0 & 0 & 0 & 0 & 0 & \ldots & 0 & \frac{1}{h^2} - \frac{1}{2h}sin(x_{N-1}) & -\frac{2}{h^2} & \frac{1}{h^2} + \frac{1}{2h}sin(x_{N-1})\\
+0 & 0 & 0 & 0 & 0 & \ldots & 0 & 0 & \frac{1}{h^2} - \frac{1}{2h}sin(x_N) & -\frac{2}{h^2}\\
+     \end{pmatrix}
+     \times
+     \begin{pmatrix}
+         y_0\\ 
+         \vdots\\
+         \vdots\\
+         \vdots\\
+         \vdots\\
+         \vdots\\
+         y_n\\ 
+     \end{pmatrix}
+$$
 
+И правую соответственно:
+
+$$
+ \begin{pmatrix}
+         - x_0^2y_0 - x_0^2\\ 
+         - x_1^2y_1 - x_1^2\\ 
+         \vdots\\
+         \vdots\\
+         \vdots\\
+         - x_{N-1}^2y_{N-1} - x_{N-1}^2\\ 
+         - x_N^2y_N - x_N^2
+     \end{pmatrix}
+ $$
+
+ На первом шаге, учитывая начальные условия, получим  вид:
+
+ $$
+\begin{pmatrix}
+1 & 0 & 0 & 0 & 0 & \ldots & 0 & 0 & 0 & 0 \\
+\frac{1}{h^2} - \frac{1}{2h}sin(x_1) & -\frac{2}{h^2} & \frac{1}{h^2} + \frac{1}{2h}sin(x_1) & 0 &  0 & \ldots & 0 & 0 & 0 & 0 \\
+0 & \frac{1}{h^2} - \frac{1}{2h}sin(x_2) & -\frac{2}{h^2} & \frac{1}{h^2} + \frac{1}{2h}sin(x_2) & 0 & \ldots  & 0 & 0 & 0 & 0 \\
+\vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots\\
+\vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots\\
+0 & 0 & 0 & 0 & 0 & \ldots & 0 & \frac{1}{h^2} - \frac{1}{2h}sin(x_{N-1}) & -\frac{2}{h^2} & \frac{1}{h^2} + \frac{1}{2h}sin(x_{N-1})\\
+0 & 0 & 0 & 0 & 0 & \ldots & 0 & 0 & 0 & 1\\
+     \end{pmatrix}
+     \times
+     \begin{pmatrix}
+         y_0\\ 
+         \vdots\\
+         \vdots\\
+         \vdots\\
+         \vdots\\
+         \vdots\\
+         y_n\\ 
+     \end{pmatrix}
+$$
+
+и
+
+$$
+ \begin{pmatrix}
+         2\\ 
+         - 2x_1^2 - x_1^2\\ 
+         \vdots\\
+         \vdots\\
+         \vdots\\
+         - 2x_{N-1}^2 - x_{N-1}^2\\ 
+         2
+     \end{pmatrix}
+ $$
+
+ Первую матрицу обозначим за A. найдем обратную к ней(Для нахождения обратной матрицы используется метод Гаусса) и обозначим ее за $A^{-1}$.
+ Далее умножаем обе части уравнения на обратную матрицу $A^{-1}$ слева. Получим выражение:
+
+$$
+ \begin{pmatrix}
+         y_0\\ 
+         y_1\\
+         \vdots\\
+         \vdots\\
+         y_{N-1}\\
+         y_N\\ 
+     \end{pmatrix}
+     \times
+     A^{-1}
+      =
+     \begin{pmatrix}
+         2\\ 
+         - 2x_1^2 - x_1^2\\ 
+         \vdots\\
+         \vdots\\
+         - 2x_{N-1} - x_{N-1}^2\\ 
+         2\\ 
+     \end{pmatrix}
+     $$
 
 
