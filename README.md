@@ -5,7 +5,7 @@
 $$
 \begin{equation*}
  \begin{cases}
-   cc
+   \frac{d^2y}{dx^2} + sin(x)\frac{dy}{dx} + x^2y + x^2 = 0
    \\
    0 \leq x \leq 1,
    \\
@@ -18,7 +18,7 @@ $$
 
 Построим для нее разностную схему:
 
-$y' \sim \frac{y(x+h) - y(x-h)}{2h} \quad y'' \sim  \frac{y(x+h) - 2y(x) + y(x-h)}{h^2}$
+$$y' \sim \frac{y(x+h) - y(x-h)}{2h}, \quad y'' \sim  \frac{y(x+h) - 2y(x) + y(x-h)}{h^2}$$
 
 $$
 \begin{equation*}
