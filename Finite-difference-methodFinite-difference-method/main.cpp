@@ -18,7 +18,15 @@ TEST(matrixTests,values)
 	}
 }
 
-int main(){
+int main(int argc, char* argv[]){
+	int n;
+	try{
+		n = std::stod(argv[1]);;
+	}
+	catch(...){
+		std::cout << "Not able to parse arguments" << std::endl;
+	}
+	
 	int i;
 	double default_value = 0, h = 1.0/(n - 1);	
 	std::vector <double> u_nk(n, default_value);
