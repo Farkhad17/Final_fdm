@@ -11,7 +11,7 @@ $$
    \\
    y(0) = 2,
    \\
-   y(1) = 1.
+   y(1) = 2.
  \end{cases}
 \end{equation*}
 $$
@@ -29,7 +29,7 @@ $$
    \\
    y_0 = 2,
    \\
-   y_N = 1.
+   y_N = 2.
  \end{cases}
 \end{equation*}
 $$
