@@ -83,3 +83,4 @@ std::vector <double> progonka(int n, double h){
 	
 	return u_nk;
 }
+
