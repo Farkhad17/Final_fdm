@@ -2,6 +2,8 @@
 #include <vector>
 #include <math.h>
 
+#include "inv_matr.cpp"
+
 std::vector <double> progonka(int n, double h){
 	int i, j, k1 = 0;
 	double default_value = 0, sum = 0, eps = 1e-6, sum1;	
@@ -9,6 +11,7 @@ std::vector <double> progonka(int n, double h){
 	std::vector <std::vector<double>> inv_A(n, std::vector<double>(n, default_value));	
 	std::vector <double> u_n(n, default_value);
 	std::vector <double> u_nk(n, default_value);
+	
 	
 	for(i = 0; i < n; i++){
 		for(j = 0; j < n; j++){
@@ -32,11 +35,23 @@ std::vector <double> progonka(int n, double h){
 	}	
 	u_n[0] = u_n[n-1] = 2;
 	
+	/*
+	for(i = 0; i < n; i++){
+		std::cout << u_n[i] << " ";
+	}
+	std::cout << std::endl;
+	*/
+	
 	for(i = 0; i < n; i++){
 		for(j = 0; j < n; j++){
 			u_nk[i] += inv_A[i][j]*u_n[j];
 		}	
 	}
+	
+	/*
+	for(i = 0; i < n; i++)std::cout << u_nk[i] << " ";
+	std::cout << std::endl;
+	*/
 	
 	while(k1 < 100){
 		for(i = 0; i < n; i++){
@@ -55,7 +70,7 @@ std::vector <double> progonka(int n, double h){
 			sum += h*pow((u_nk[i+1] - u_nk[i]),2);
 			sum1 = sum;
 		}
-		
+		//std::cout << "sum = " << sum << std::endl;
 		if(sum < eps)break;
 		else {
 			sum = 0;
@@ -64,7 +79,7 @@ std::vector <double> progonka(int n, double h){
 	}
 	k1 = 0; 
 	
-	std::cout << "dist = " << sum1 << std::endl << std::endl;
+	std::cout << "sum = " << sum1 << std::endl << std::endl;
 	
 	return u_nk;
 }
